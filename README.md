@@ -20,6 +20,8 @@ https://datamx.shinyapps.io/DevolopingDataProducts/
   
 Pitch can be found at:
 http://rpubs.com/DataMX/ShinyAppPitch2
+or
+http://DataMX.github.com/DevolopingDataProducts
 `
 
 
