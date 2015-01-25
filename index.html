@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Predicting Plant Efficiency with Stackloss</title>
+  <meta name="description" content="">
+  <meta name="author" content="DataMX">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/reveal.min.css">
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/theme/default.css" id="theme">
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/.css" id="theme">
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->  <link rel="stylesheet" href = "assets/css/ribbons.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class='' data-state='' id='slide-1'>
+  <h2>Predicting Plant Efficiency with Stackloss</h2>
+  <h1>Shiny App Pitch</h1>
+
+<p>DataMX</p>
+
+<p>1/25/15  </p>
+
+<p>Coursera&#39;s Developing Data Products</p>
+
+</section>
+<section class='' data-state='' id='slide-2'>
+  <h2>Motivation</h2>
+  <p>This is a motivating example of a Shiny App for Coursera&#39;s Developing Data Products offered by Johns Hopkins University.  I am using Brownlee&#39;s Stack Loss Plant Data provided in the R package <code>datasets</code> as <code>stackloss</code>.  </p>
+
+<p>In this app, the stack loss is fit in a multiple variable linear regression that contains 21 days of operational data for a plant that oxidizes ammonia to nitric acid.  The stackloss is an inverse measure of the plant&#39;s overall efficiency.</p>
+
+</section>
+<section class='' data-state='' id='slide-3'>
+  <h2>Linear Regression Model</h2>
+  <p>The formula to be fit is below.  The model does not include acid concentration as when included, acid concentration was not statistically significant at a 95% Confidence Interval.  Additional details about <code>stackloss</code> or the linear model can be found under the About Stackloss, Linear Model tabs within the app.</p>
+
+<pre><code class="r">lmsl &lt;- lm(stack.loss ~ Air.Flow + Water.Temp, data = stackloss)
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-4'>
+  <h2>Prediction</h2>
+  <p>Under Predict, users can enter Air Flow and Water Temp variables to predict stack loss.  This predicted loss could be compared to actual loss to create indicator of whether plant efficiency is changing.</p>
+
+<p>Example Code and Output</p>
+
+<pre><code class="r">predict(lmsl, userdata, interval=&quot;predict&quot;)
+</code></pre>
+
+<pre><code>##        fit      lwr      upr
+## 1 14.47514 7.491007 21.45928
+</code></pre>
+
+</section>
+<section class='' data-state='' id='slide-5'>
+  <h2>Try it Out!</h2>
+  <p>The app can be found at:
+<a href="https://datamx.shinyapps.io/DevolopingDataProducts/">https://datamx.shinyapps.io/DevolopingDataProducts/</a></p>
+
+</section>
+    </div>
+  </div>
+</body>
+  <script src="libraries/frameworks/revealjs/lib/js/head.min.js"></script>
+  <script src="libraries/frameworks/revealjs/js/reveal.min.js"></script>
+  <script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme || 'default', 
+    transition: Reveal.getQueryHash().transition || 'default', 
+    dependencies: [
+    // Cross-browser shim that fully implements classList -
+    // https://github.com/eligrey/classList.js/
+      { src: 'libraries/frameworks/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList;}},
+      // Zoom in and out with Alt+click
+      { src: 'libraries/frameworks/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: 'libraries/frameworks/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: 'libraries/frameworks/revealjs/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]
+  });
+  </script>  <!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+ 
+
+</html>
